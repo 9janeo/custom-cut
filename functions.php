@@ -91,6 +91,17 @@ function beans_child_add_post_meta_date_icon() {
   	<i class="uk-icon-calendar-check-o uk-margin-small-right uk-text-muted"></i>
   <?php
 }
+
+// add google tag manager to all pages
+add_action( 'beans_header_after_markup', 'page_tag_manager' );
+function page_tag_manager() {
+	?>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8QGFN7"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	<?php
+}
 	
 // function beans_child_control_image() {
 // 	add_image_size('max-width', 300, 9999); //300 pixels wide (and unlimited height)
@@ -165,6 +176,15 @@ function footer_verisign_badge() {
 }
 
 function custom_head_script() {
+	$manager = "<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-P8QGFN7');</script>
+	<!-- End Google Tag Manager -->";
+
+
 	$google = "<script async src='https://www.googletagmanager.com/gtag/js?id=G-8MJYEEC6DC'></script>";
 	$google .= "<script>
 		window.dataLayer = window.dataLayer || [];
@@ -185,6 +205,7 @@ function custom_head_script() {
 	</script>";
 	
 	// echo $google;
+	echo $manager;
 	echo $ga4;
 
 }	
