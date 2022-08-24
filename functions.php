@@ -236,3 +236,10 @@ add_action('wp_head', 'custom_head_script');
 // 	print_r($current_page);
 // }
 
+// Noindex 404 pages
+function noindex_not_found(){
+	if ( is_404() ) {?>
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+	<?php }
+}
+add_action('wp_head', 'noindex_not_found');
